@@ -1,22 +1,21 @@
 {
-  "name": "John Doe",
-  "photoUrl": "favicon.svg",
-  "intro": "A brief, compelling introduction about who you are and what you do. Mention your core philosophy, your passion for building digital products, and your drive for creating efficient, high-impact solutions.",
-  "introHtml": "A brief, compelling introduction about who you are and what you do. Mention your core <span class='text-white font-bold'>philosophy</span>, your passion for building digital products, and your drive for creating <span class='text-white font-bold'>efficient</span>, <span class='text-white font-bold'>high-impact</span> solutions.",
-  "webpageTitle": "John Doe",
+  "name": " Julio Bermudez",
+  "photoUrl": "me.png",
+  "intro": "Senior Frontend Engineer with 4+ years of experience building <span class='text-white font-bold'>data-intensive</span> web applications. I care deeply about <span class='text-white font-bold'>code quality</span> — not as a buzzword, but as a measurable outcome. My approach combines strong <span class='text-white font-bold'>React & TypeScript</span> fundamentals with a testing-first mindset that has consistently turned unreliable codebases into stable, maintainable products.",
+  "webpageTitle": "Julio Bermudez",
   "resumeUrl": "https://example-files.online-convert.com/document/pdf/example.pdf",
 
   "_comment": "Add your social links below. Leave the 'url' empty to hide the icon. Set 'showInContact' to true or false to control if it appears in the Contact section.",
   "socials": [
     {
       "name": "GitHub",
-      "url": "https://github.com/[YOUR_USER_NAME]",
+      "url": "https://github.com/julio22b",
       "icon": "mdi:github",
       "showInContact": true
     },
     {
       "name": "LinkedIn",
-      "url": "https://linkedin.com/in/[YOUR_USER_NAME]",
+      "url": "https://www.linkedin.com/in/julio-bermudez-dev/",
       "icon": "mdi:linkedin",
       "showInContact": true
     },
@@ -34,13 +33,13 @@
     },
     {
       "name": "Email",
-      "url": "mailto:your-mail@example.com",
+      "url": "mailto:jbermudezfc90@gmail.com",
       "icon": "mdi:email",
       "showInContact": true
     },
     {
       "name": "Whatsapp",
-      "url": "https://wa.me/[YOUR_WHATSAPP_NUMBER]",
+      "url": "https://wa.me/12678051253",
       "icon": "mdi:whatsapp",
       "showInContact": true
     },

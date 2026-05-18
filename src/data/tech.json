@@ -1,35 +1,36 @@
 {
   "categories": [
     {
-      "title": "Mobile Development",
-      "skills": [
-        { "name": "Flutter", "level": 3, "icon": "skill-icons:flutter-dark" },
-        { "name": "Dart", "level": 3, "icon": "skill-icons:dart-dark" },
-        { "name": "Kotlin", "level": 1, "icon": "skill-icons:kotlin-dark" }
-      ]
-    },
-    {
       "title": "Frontend",
       "skills": [
-        { "name": "Astro", "level": 2, "icon": "skill-icons:astro" },
-        { "name": "HTML", "level": 2, "icon": "skill-icons:html" },
-        { "name": "CSS", "level": 2, "icon": "skill-icons:css" },
-        { "name": "Tailwind CSS", "level": 1, "icon": "skill-icons:tailwindcss-dark" }
+        { "name": "React", "icon": "skill-icons:react-dark" },
+        { "name": "TypeScript", "icon": "skill-icons:typescript" },
+        { "name": "JavaScript", "icon": "skill-icons:javascript" },
+        { "name": "Redux", "icon": "skill-icons:redux" },
+        { "name": "Next.js", "icon": "skill-icons:nextjs-dark" },
+        { "name": "HTML5", "icon": "skill-icons:html" },
+        { "name": "CSS3", "icon": "skill-icons:css" },
+        { "name": "Material UI", "icon": "skill-icons:materialui-dark" }
       ]
     },
     {
       "title": "Backend",
       "skills": [
-        { "name": "FastAPI", "level": 2, "icon": "skill-icons:fastapi" },
-        { "name": "Python", "level": 2, "icon": "skill-icons:python-dark" },
-        { "name": "Firebase", "level": 3, "icon": "vscode-icons:file-type-firebase" }
+        { "name": "Node.js", "icon": "skill-icons:nodejs-dark" },
+        { "name": "Express.js", "icon": "skill-icons:expressjs-dark" },
+        { "name": "PostgreSQL", "icon": "skill-icons:postgresql-dark" },
+        { "name": "MongoDB", "icon": "skill-icons:mongodb" }
       ]
     },
     {
-      "title": "Database",
+      "title": "Tools & Testing",
       "skills": [
-        { "name": "SQLite", "level": 3, "icon": "skill-icons:sqlite" },
-        { "name": "PostgreSQL", "level": 2, "icon": "skill-icons:postgresql-dark" }
+        { "name": "Jest", "icon": "skill-icons:jest" },
+        { "name": "React Testing Library", "icon": "logos:testing-library" },
+        { "name": "Selenium", "icon": "skill-icons:selenium" },
+        { "name": "Nightwatch", "icon": "logos:nightwatch" },
+        { "name": "Git", "icon": "skill-icons:git" },
+        { "name": "ESLint", "icon": "logos:eslint" }
       ]
     }
   ]

@@ -1,26 +1,26 @@
 [
   {
-    "company": "Demo Company",
-    "role": "Lead Software Engineer",
-    "period": "Oct 2025 - Present",
+    "company": "Pulpo WMS",
+    "role": "Frontend Developer",
+    "period": "Nov 2020 - May 2024",
     "type": "Full time job",
-    "description": "Leading cross-platform mobile development using Flutter and FastAPI. Focused on scalable system design and high-performance data processing.",
-    "skills": ["Leading", "Collaboration"]
+    "description": "Built and maintained core features for a Warehouse Management System, focusing on data validation, component architecture, and test coverage. Led the migration to modern JavaScript and drove automated testing from 36% to 88% coverage.",
+    "skills": ["React", "Redux", "TypeScript", "Jest", "Selenium", "JavaScript (ES6+)"]
   },
   {
-    "company": "Demo Company",
+    "company": "Flowster",
     "role": "Full-stack Developer",
-    "period": "Sep 2023 - Sep 2025",
+    "period": "Jun 2020 - Nov 2020",
     "type": "Full time job",
-    "description": "Specializing in Business Research Methods and Strategic HRM. Applying analytical frameworks to human capital management.",
-    "skills": ["React", "Node.js", "PostgreSQL", "Docker"]
+    "description": "Resolved a high volume of cross-stack bug tickets across React/Redux and Express/Mongoose. Introduced ESLint configurations that standardized code quality across the team.",
+    "skills": ["React", "Redux", "Node.js", "Express.js", "MongoDB"]
   },
   {
-    "company": "Demo University of Tech",
-    "role": "BSc in Computer Science",
-    "period": "Jun 2020 - Jun 2024",
+    "company": "Universidad de Carabobo",
+    "role": "B.S. in Clinical Laboratory Science",
+    "period": "2014 - 2019",
     "type": "Student",
-    "description": "Specializing in Business Research Methods and Strategic HRM. Applying analytical frameworks to human capital management.",
-    "skills": ["C++", "OOP", "Problem Solving"]
+    "description": "Developed strong analytical and problem-solving skills through a rigorous science curriculum. Transitioned into software engineering through self-teaching, applying the same discipline to mastering frontend development.",
+    "skills": ["Analytical Thinking", "Problem Solving", "Self-learning"]
   }
 ]
