@@ -1,5 +1,5 @@
-# CareerPortfolio: Data-Driven Astro SSG
-Live Demo: [careerportofio.netlify.app](juliobermudez.netlify.app)
+# Career Portfolio
+Live Demo: [juliobermudez.netlify.app](juliobermudez.netlify.app)
 
 [![Astro](https://img.shields.io/badge/Astro-FF5D01?logo=astro&logoColor=white)](https://astro.build/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
