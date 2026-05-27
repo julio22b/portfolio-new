@@ -86,7 +86,7 @@ import projectsData from '../data/projects.json';
     cards.forEach(card => observer.observe(card));
   };
 
-  window.addEventListener('load', initProjectReveal);
+  initProjectReveal();
 
   // Support for Astro View Transitions
   document.addEventListener('astro:after-swap', initProjectReveal);
