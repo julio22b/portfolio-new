@@ -1,20 +1,20 @@
 [
-  {
-    "title": "Awesome Website",
-    "description": "A high-performance, SEO-optimized web application built with modern frameworks to showcase technical expertise.",
-    "images": ["astro-01.webp", "astro-02.jpeg"],
-    "tech": ["Astro", "Tailwind"],
-    "platforms": ["web"],
-    "link": "https://astro.build/themes/details/career-portfolio-data-driven-astro-ssg/",
-    "category": "Published Website"
-  },
-  {
-    "title": "Demo Mobile App",
-    "description": "A high-performance mobile application built with modern frameworks to showcase technical expertise.",
-    "images": ["astro-02.jpeg", "#"],
-    "tech": ["Flutter", "Dart", "REST API"],
-    "platforms": ["apple-ios", "android"],
-    "link": "https://github.com/nbakh16/career-portfolio-template",
-    "category": "Hobby"
-  }
+    {
+        "title": "WMS Outgoing Orders Dashboard",
+        "description": "A real-time warehouse management dashboard for tracking and managing outgoing orders. Features live updates across connected clients via Socket.io, full CRUD, and a status timeline showing each order's progression from picking to dispatch.",
+        "images": ["wms-01.png"],
+        "tech": ["React", "TypeScript", "Redux", "Node.js", "PostgreSQL", "Socket.io", "Docker"],
+        "platforms": ["web"],
+        "link": "https://outgoing-orders-frontend.onrender.com",
+        "category": "Full Stack App"
+    },
+    {
+        "title": "Letterboxd",
+        "description": "A film reviewing app. It uses TMDB and OMDB's APIs to get the films' data so users can review, rate, like, make lists and keep a diary of their watched films.",
+        "images": ["letterboxd-01.png"],
+        "tech": ["React", "TypeScript", "Redux", "Node.js", "MongoDB", "Jest"],
+        "platforms": ["web"],
+        "link": "https://movie-app-frontend-05mf.onrender.com/",
+        "category": "Full Stack App"
+    }
 ]
