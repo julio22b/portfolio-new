@@ -47,10 +47,11 @@ const navItems: NavItem[] = [
 <div class="flex justify-center w-full">
   <nav
     id="main-nav"
+    aria-label="Main Navigation"
     class="fixed left-1/2 -translate-x-1/2 z-20 border-[1.2px] border-transparent transition-all duration-500 ease-in-out md:top-6 md:bottom-auto bottom-0 w-[80%]"
   >
     <div class="container mx-auto flex justify-center items-center p-3 reveal-content" style="animation-delay: 700ms;">
-      <ul
+      <ul 
         class="flex w-full justify-between md:space-x-6 md:justify-center md:gap-12 gap-1"
       >
         {
@@ -59,8 +60,9 @@ const navItems: NavItem[] = [
               <a
                 href={item.href}
                 class="flex flex-col items-center gap-1 text-accent transition-colors text-xs md:text-base relative group"
+                aria-label={`Go to ${item.label} section`}
               >
-                <div class="absolute -left-6 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full transition-all duration-300 scale-0 opacity-0 nav-indicator hidden md:block" />
+                <div class="absolute -left-4 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-accent rounded-full transition-all duration-300 scale-0 opacity-0 nav-indicator hidden md:block" />
                 <span class="md:hidden flex items-center justify-center w-6 h-6">
                   <Icon 
                     name={item.icon} 
@@ -113,8 +115,9 @@ const navItems: NavItem[] = [
   }
 
   nav a.active .nav-indicator {
-    transform: translateY(-50%) scale(1);
-    opacity: 0;
+    transform: translateY(-50%) scale(1) !important;
+    opacity: 1 !important;
+    box-shadow: 0 0 8px var(--color-accent);
   }
 
   /* Base state for the link text */
@@ -226,100 +229,87 @@ const navItems: NavItem[] = [
 </style>
 
 <script>
-  //scroll morphing effect, changing width & border radius
-  const nav = document.getElementById("main-nav");
-  const themeWrapper = document.getElementById("theme-toggle-wrapper");
+  function initNav() {
+    const nav = document.getElementById("main-nav");
+    const themeWrapper = document.getElementById("theme-toggle-wrapper");
+    if (!nav) return;
 
-  const maxScroll = 1000;
-  let lastScrollY = window.scrollY;
-  let rafId: number | null = null;
+    const maxScroll = 1000;
+    let lastScrollY = window.scrollY;
+    let rafId: number | null = null;
 
-  function updateNav() {
-    const currentScrollY = window.scrollY;
+    function updateNav() {
+      const currentScrollY = window.scrollY;
 
-    if (currentScrollY > 0) {
-      nav?.classList.add("scrolling");
+      if (currentScrollY > 0) {
+        nav?.classList.add("scrolling");
 
-      const scrollProgress = Math.min(window.scrollY / maxScroll, 1);
-      const easeProgress = 1 - Math.pow(1 - scrollProgress, 4);
+        const scrollProgress = Math.min(window.scrollY / maxScroll, 1);
+        const easeProgress = 1 - Math.pow(1 - scrollProgress, 4);
 
-      const minWidth = 620;
-      const maxWidth = window.innerWidth * 0.8;
-      const currentWidth = maxWidth - (maxWidth - minWidth) * easeProgress;
+        const minWidth = 620;
+        const maxWidth = window.innerWidth * 0.8;
+        // Robust calculation to prevent flickering on small desktop windows
+        const currentWidth = maxWidth > minWidth 
+          ? maxWidth - (maxWidth - minWidth) * easeProgress 
+          : maxWidth;
 
-      if (window.innerWidth >= 768) {
-        nav?.style.setProperty("width", `${currentWidth}px`);
-      }
-    } else {
-      nav?.classList.remove("scrolling");
-      // nav?.style.setProperty("width", "80%");
-    }
-    if (window.innerWidth < 768) {
-      // Small buffer (e.g. 10px) to prevent accidental hiding on "jittery" scrolls
-      if (currentScrollY > lastScrollY && currentScrollY > 50) {
-        // Scrolling Down - Hide Nav & theme-toggle
-        nav?.classList.add("nav-hidden");
-        themeWrapper?.classList.add("theme-hidden");
+        if (window.innerWidth >= 768) {
+          nav?.style.setProperty("width", `${currentWidth}px`);
+        }
       } else {
-        // Scrolling Up - Show Nav & theme-toggle
-        nav?.classList.remove("nav-hidden");
-        themeWrapper?.classList.remove("theme-hidden");
+        nav?.classList.remove("scrolling");
       }
+
+      if (window.innerWidth < 768) {
+        if (currentScrollY > lastScrollY && currentScrollY > 50) {
+          nav?.classList.add("nav-hidden");
+          themeWrapper?.classList.add("theme-hidden");
+        } else {
+          nav?.classList.remove("nav-hidden");
+          themeWrapper?.classList.remove("theme-hidden");
+        }
+      }
+
+      lastScrollY = currentScrollY;
+      rafId = null;
     }
 
-    lastScrollY = currentScrollY;
-    rafId = null;
-  }
+    window.addEventListener("scroll", () => {
+      if (!rafId) rafId = requestAnimationFrame(updateNav);
+    }, { passive: true });
 
-  window.addEventListener(
-    "scroll",
-    () => {
-      if (!rafId) {
-        rafId = requestAnimationFrame(updateNav);
-      }
-    },
-    { passive: true }
-  );
-
-  //smooth scrolling to a linked section
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      e.preventDefault();
-      const target = e.currentTarget as HTMLAnchorElement;
-      const targetId = target.getAttribute("href")?.substring(1) || "";
-      const targetElement = document.getElementById(targetId);
-      if (targetElement) {
-        targetElement.scrollIntoView({
-          behavior: "smooth",
-        });
-      }
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener("click", function (e) {
+        e.preventDefault();
+        const targetId = (e.currentTarget as HTMLAnchorElement).getAttribute("href")?.substring(1);
+        document.getElementById(targetId || "")?.scrollIntoView({ behavior: "smooth" });
+      });
     });
-  });
 
-  //highlight section by observing visible one on the screen by 50%
-  document.addEventListener("DOMContentLoaded", () => {
+    // Intersection Observer for Active State
     const sections = document.querySelectorAll("section[id]");
     const navLinks = document.querySelectorAll("nav a[href^='#']");
-    const observerOptions = { threshold: 0.5 };
-
-    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+    
+    const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          navLinks.forEach((link) => link.classList.remove("active"));
-          const id = entry.target.getAttribute("id");
-          const activeLink = document.querySelector(`nav a[href="#${id}"]`);
-          if (activeLink) {
-            activeLink.classList.add("active");
-          }
+          const id = entry.target.id;
+          navLinks.forEach((link) => {
+            const isActive = link.getAttribute("href") === `#${id}`;
+            link.classList.toggle("active", isActive);
+            if (isActive) link.setAttribute("aria-current", "page");
+            else link.removeAttribute("aria-current");
+          });
         }
       });
-    };
+    }, { threshold: 0.2 }); // Lower threshold handles long sections like Career better
 
-    const observer = new IntersectionObserver(
-      observerCallback,
-      observerOptions
-    );
     sections.forEach((section) => observer.observe(section));
-  });
-</script>
+  }
 
+  // Run on initial load and after Astro swaps pages
+  initNav();
+  document.addEventListener('astro:after-swap', initNav);
+</script>

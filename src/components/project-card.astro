@@ -1,11 +1,26 @@
 ---
 import { Icon } from 'astro-icon/components';
-const { project } = Astro.props;
+
+interface Project {
+  title: string;
+  category: string;
+  description: string;
+  link: string;
+  images: string[];
+  tech: string[];
+  platforms: string[];
+}
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props as Props;
 
 const isSlider = project.images.length > 1;
 ---
 
-<div class="project-card group relative bg-accent/5 border border-accent/10 rounded-2xl overflow-hidden hover:border-accent/40 transition-all duration-500">
+<div class="project-card group relative bg-accent/5 border border-accent/10 rounded-2xl overflow-hidden hover:border-accent/40 hover:shadow-xl hover:shadow-accent/10 transition-all duration-500">
   <div class="aspect-video overflow-hidden relative bg-background/50">
     <div class="absolute inset-0 bg-accent/10 group-hover:bg-transparent transition-colors z-10 pointer-events-none"></div>
     
@@ -14,7 +29,7 @@ const isSlider = project.images.length > 1;
         <img 
           src={img}
           alt={`${project.title} screenshot ${index + 1}`}
-          onerror="this.onerror=null;this.src='placeholder.jpeg';"
+          onerror="this.onerror=null;this.src='/placeholder.jpeg';"
           class={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 group-hover:scale-110 ${index === 0 ? 'opacity-100 z-0' : 'opacity-0 z-[-1]'}`}
         />
       ))}
@@ -35,7 +50,7 @@ const isSlider = project.images.length > 1;
         <span class="text-accent text-[10px] uppercase tracking-widest font-bold">{project.category}</span>
         <h3 class="text-xl font-heading font-bold text-maintext mt-1">{project.title}</h3>
       </div>
-      <a href={project.link} target="_blank" class="text-accent/75 hover:text-accent transition-colors">
+      <a href={project.link} target="_blank" rel="noopener noreferrer" aria-label={`View ${project.title} project`} class="text-accent/75 hover:text-accent transition-colors">
         <Icon name="mdi:open-in-new" class="w-6 h-6" />
       </a>
     </div>
@@ -44,13 +59,15 @@ const isSlider = project.images.length > 1;
       {project.description}
     </p>
 
-    <div class="flex flex-wrap gap-2 pt-2">
+    <ul class="flex flex-wrap gap-2 pt-2" role="list">
       {project.tech.map((t: string) => (
-        <span class="rounded-md text-[10px] px-2 md:px-4 py-1 bg-accent/5 border border-accent/10 text-accent/80  group-hover:border-accent/40 group-hover:text-accent">
-          {t}
-        </span>
+        <li>
+          <span class="rounded-md text-[10px] px-2 md:px-4 py-1 bg-accent/5 border border-accent/10 text-accent/80  group-hover:border-accent/40 group-hover:text-accent">
+            {t}
+          </span>
+        </li>
       ))}
-    </div>
+    </ul>
   </div>
 </div>
 
