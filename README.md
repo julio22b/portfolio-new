@@ -1,5 +1,5 @@
 # Career Portfolio
-Live Demo: [juliobermudez.netlify.app](https://juliobermudez.dev/)
+Live Demo: [juliobermudez.dev](https://juliobermudez.dev/)
 
 [![Astro](https://img.shields.io/badge/Astro-FF5D01?logo=astro&logoColor=white)](https://astro.build/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
