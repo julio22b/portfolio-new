@@ -1,7 +1,7 @@
 {
   "name": " Julio Bermudez",
   "photoUrl": "me.png",
-  "intro": "Senior Frontend Engineer with 4+ years of experience building <span class='text-white font-bold'>data-intensive</span> web applications. I care deeply about <span class='text-white font-bold'>code quality</span> — not as a buzzword, but as a measurable outcome. My approach combines strong <span class='text-white font-bold'>React & TypeScript</span> fundamentals with a testing-first mindset that has consistently turned unreliable codebases into stable, maintainable products.",
+  "intro": "Senior Frontend Engineer with 4+ years of experience building <span class='font-bold'>data-intensive</span> web applications. I care deeply about <span class='font-bold'>code quality</span> as a measurable outcome. My approach combines strong <span class='font-bold'>React & TypeScript</span> fundamentals with a testing-first mindset that has consistently turned unreliable codebases into stable, maintainable products.",
   "webpageTitle": "Julio Bermudez",
   "resumeUrl": "https://example-files.online-convert.com/document/pdf/example.pdf",
 

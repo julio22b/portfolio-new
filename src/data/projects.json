@@ -10,7 +10,7 @@
     },
     {
         "title": "Letterboxd",
-        "description": "A film reviewing app. It uses TMDB and OMDB's APIs to get the films' data so users can review, rate, like, make lists and keep a diary of their watched films.",
+        "description": "A full-stack film reviewing app powered by TMDB and OMDB APIs. Users can review and rate films, build watchlists, like movies, and keep a personal diary of watched films. Features JWT authentication and a MongoDB backend.",
         "images": ["letterboxd-01.png"],
         "tech": ["React", "TypeScript", "Redux", "Node.js", "MongoDB", "Jest"],
         "platforms": ["web"],

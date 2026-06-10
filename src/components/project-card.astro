@@ -20,7 +20,7 @@ const { project } = Astro.props as Props;
 const isSlider = project.images.length > 1;
 ---
 
-<div class="project-card group relative bg-accent/5 border border-accent/10 rounded-2xl overflow-hidden hover:border-accent/40 hover:shadow-xl hover:shadow-accent/10 transition-all duration-500">
+<div class="project-card group relative flex flex-col bg-accent/5 border border-accent/10 rounded-2xl overflow-hidden hover:border-accent/40 hover:shadow-xl hover:shadow-accent/10 transition-all duration-500">
   <div class="aspect-video overflow-hidden relative bg-background/50">
     <div class="absolute inset-0 bg-accent/10 group-hover:bg-transparent transition-colors z-10 pointer-events-none"></div>
     
@@ -44,7 +44,7 @@ const isSlider = project.images.length > 1;
     </div>
   </div>
 
-  <div class="p-6 space-y-4">
+  <div class="p-6 space-y-4 flex flex-col flex-grow">
     <div class="flex justify-between items-start">
       <div>
         <span class="text-accent text-[10px] uppercase tracking-widest font-bold">{project.category}</span>
@@ -55,11 +55,11 @@ const isSlider = project.images.length > 1;
       </a>
     </div>
 
-    <p class="text-subtext text-sm font-body line-clamp-3">
+    <p class="text-subtext text-sm font-body">
       {project.description}
     </p>
 
-    <ul class="flex flex-wrap gap-2 pt-2" role="list">
+    <ul class="flex flex-wrap gap-2 pt-2 mt-auto" role="list">
       {project.tech.map((t: string) => (
         <li>
           <span class="rounded-md text-[10px] px-2 md:px-4 py-1 bg-accent/5 border border-accent/10 text-accent/80  group-hover:border-accent/40 group-hover:text-accent">
