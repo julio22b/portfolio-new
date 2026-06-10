@@ -17,8 +17,32 @@ const defaultTheme = `${baseTheme}-dark`;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="/favicon.ico" />
+
+    <meta name="description" content="Julio Bermudez — Senior Frontend Engineer specializing in React, TypeScript, and Node.js." />
+    <meta name="author" content="Julio Bermudez" />
+
+    <meta property="og:title" content="Julio Bermudez — Senior Frontend Engineer" />
+    <meta property="og:description" content="Portfolio of Julio Bermudez, Senior Frontend Engineer with 4+ years of experience in React, TypeScript, and Node.js." />
+    <meta property="og:url" content="https://juliobermudez.dev" />
+    <meta property="og:type" content="website" />
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="canonical" href="https://juliobermudez.dev" />
     <title>{title}</title>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Julio Bermudez",
+      "jobTitle": "Senior Frontend Engineer",
+      "url": "https://juliobermudez.dev",
+      "sameAs": [
+        "https://linkedin.com/in/julio-bermudez-dev",
+        "https://github.com/julio22b"
+      ]
+    }
+    </script>
 
     <!-- THEME TOGGLE SCRIPT -->
     <script is:inline define:vars={{ baseTheme, defaultTheme }}>
