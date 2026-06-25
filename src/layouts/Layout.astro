@@ -13,25 +13,31 @@ const defaultTheme = `${baseTheme}-dark`;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="no-js">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <meta name="description" content="Julio Bermudez — Senior Frontend Engineer specializing in React, TypeScript, and Node.js." />
     <meta name="author" content="Julio Bermudez" />
+    <meta name="theme-color" content="#a78bfa" />
 
-    <meta property="og:title" content="Julio Bermudez — Senior Frontend Engineer" />
-    <meta property="og:description" content="Portfolio of Julio Bermudez, Senior Frontend Engineer with 4+ years of experience in React, TypeScript, and Node.js." />
-    <meta property="og:url" content="https://juliobermudez.dev" />
-    <meta property="og:type" content="website" />
-    
-    <link rel="alternate" hreflang="x-default" href="https://juliobermudez.dev" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="canonical" href="https://juliobermudez.dev" />
+    <link rel="alternate" hreflang="x-default" href="https://juliobermudez.dev" />
     <title>{title}</title>
 
-    <script type="application/ld+json">
+    <!-- Open Graph -->
+    <meta property="og:site_name" content="Julio Bermudez" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://juliobermudez.dev" />
+    <meta property="og:title" content="Julio Bermudez — Senior Frontend Engineer" />
+    <meta property="og:description" content="Portfolio of Julio Bermudez, Senior Frontend Engineer with 4+ years of experience in React, TypeScript, and Node.js." />
+    <meta property="og:image" content="https://juliobermudez.dev/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
+
+    <script is:inline type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Person",
@@ -47,6 +53,8 @@ const defaultTheme = `${baseTheme}-dark`;
 
     <!-- THEME TOGGLE SCRIPT -->
     <script is:inline define:vars={{ baseTheme, defaultTheme }}>
+      document.documentElement.classList.remove('no-js');
+
       const savedTheme = localStorage.getItem('theme');
 
       if (savedTheme && savedTheme.startsWith(baseTheme)) {

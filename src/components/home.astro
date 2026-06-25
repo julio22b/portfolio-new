@@ -1,41 +1,13 @@
 ---
 import { Icon } from 'astro-icon/components';
-import localData from '../data/home.json';
+import type localHomeData from '../data/home.json';
 
-//Data Definitions
-interface Social {
-  name: string;
-  url: string;
-  icon: string;
+interface Props {
+  data: typeof localHomeData;
 }
 
-interface ProfileData {
-  name: string;
-  photoUrl: string;
-  intro: string;
-  resumeUrl: string;
-  socials: Social[];
-}
-
-const isApiLive = import.meta.env.PROD; // Auto true in production
-const BASE_URL = import.meta.env.PUBLIC_API_BASE_URL;
-
-let data: ProfileData; // data as ProfileData
-
-if (isApiLive && BASE_URL) {
-  try {
-    const response = await fetch(`${BASE_URL}/home`);
-    if (!response.ok) throw new Error('Network response was not ok');
-    data = await response.json();
-  } catch (error) {
-    console.error("API Fetch failed, falling back to mock data", error);
-    data = localData as ProfileData;
-  }
-} else {
-  data = localData as ProfileData;
-}
-
-const { name, photoUrl, intro, resumeUrl, socials } = data;
+const { data } = Astro.props;
+const { name, photoUrl, intro, socials } = data;
 ---
 
 <section id="home" class="flex flex-col items-center justify-center section-container md:pt-30 gap-1 min-h-[80vh] text-center">
@@ -70,7 +42,7 @@ const { name, photoUrl, intro, resumeUrl, socials } = data;
 
   <div class="mt-8 mb-4 reveal-content" style="animation-delay: 400ms;">
     <a 
-      href="/Julio-Bermúdez-Senior-React-Engineer.pdf" 
+      href="/Julio-Bermudez-Senior-React-Engineer.pdf" 
       target="_blank" 
       rel="noopener noreferrer"
       class="group relative inline-flex items-center justify-center px-10 py-2 bg-white/5 border border-white/10 rounded-full text-maintext font-body transition-all duration-300

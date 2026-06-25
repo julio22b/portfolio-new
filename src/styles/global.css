@@ -179,6 +179,41 @@
     }
 }
 
+/* No-JS fallback + prefers-reduced-motion: unhide all scroll-animated content */
+.no-js .reveal-content,
+.no-js .scroll-stat,
+.no-js .project-header,
+.no-js .project-card,
+.no-js .tech-header,
+.no-js .skill-card,
+.no-js .contact-header,
+.no-js .contact-card,
+.no-js .contact-footer {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal-content,
+    .scroll-stat,
+    .project-header,
+    .project-card,
+    .tech-header,
+    .skill-card,
+    .contact-header,
+    .contact-card,
+    .contact-footer {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
 /* Custom Scrollbar for a cleaner look */
 ::-webkit-scrollbar {
     width: 8px;

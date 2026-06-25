@@ -3,8 +3,6 @@
   "photoUrl": "me.png",
   "intro": "Senior Frontend Engineer with 4+ years of experience building <span class='font-bold'>data-intensive</span> web applications. I care deeply about <span class='font-bold'>code quality</span> as a measurable outcome. My approach combines strong <span class='font-bold'>React & TypeScript</span> fundamentals with a testing-first mindset that has consistently turned unreliable codebases into stable, maintainable products.",
   "webpageTitle": "Julio Bermudez",
-  "resumeUrl": "https://example-files.online-convert.com/document/pdf/example.pdf",
-
   "_comment": "Add your social links below. Leave the 'url' empty to hide the icon. Set 'showInContact' to true or false to control if it appears in the Contact section.",
   "socials": [
     {
