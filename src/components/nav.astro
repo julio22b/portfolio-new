@@ -114,14 +114,14 @@ const navItems: NavItem[] = [
 
   /* Active state */
   nav a.active {
-    color: var(--color-maintext) !important;
+    color: var(--color-accent) !important;
     font-weight: 700;
     transform: scale(1.1);
   }
 
   /* Glow effect */
   nav a.active span {
-    text-shadow: 0 0 10px color-mix(in srgb, var(--color-maintext) 30%, transparent);
+    text-shadow: 0 0 10px color-mix(in srgb, var(--color-accent) 30%, transparent);
   }
 
   /* Ensure the scale doesn't jitter the layout */
@@ -137,9 +137,9 @@ const navItems: NavItem[] = [
   }
 
   nav a.active .nav-icon {
-    color: var(--color-maintext) !important;
+    color: var(--color-accent) !important;
     transform: scale(1.2);
-    filter: drop-shadow(0 0 8px var(--color-maintext));
+    filter: drop-shadow(0 0 8px var(--color-accent));
   }
 
   @media (max-width: 767px) {
@@ -195,17 +195,17 @@ const navItems: NavItem[] = [
 
   /* Hover effect */
   nav a:not(.active):hover {
-    color: var(--color-maintext) !important;
+    color: var(--color-accent) !important;
   }
 
   nav a:not(.active):hover span {
     transform: scale(0.95);
-    text-shadow: 0 0 15px var(--color-accent-60);
+    text-shadow: 0 0 15px color-mix(in srgb, var(--color-accent) 60%, transparent);
   }
   
   nav a:not(.active):hover .nav-icon {
     transform: scale(0.95);
-    color: var(--color-maintext) !important;
+    color: var(--color-accent) !important;
   }
 
   @media (max-width: 767px) {
