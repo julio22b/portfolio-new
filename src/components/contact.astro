@@ -86,43 +86,19 @@ const formatUrl = (url: string) => {
 </style>
 
 <script>
-  const revealContact = () => {
-    const header = document.querySelector('.contact-header');
-    const footer = document.querySelector('.contact-footer');
-    const cards = document.querySelectorAll('.contact-card');
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const target = entry.target as HTMLElement;
+  import { setupScrollReveal } from '../utils/reveal';
 
-          if (target.classList.contains('contact-card')) {
-            const index = Array.from(cards).indexOf(target);
-            // Stagger effect for the 4-column grid
-            setTimeout(() => {
-              target.classList.add('reveal');
-            }, (index * 100));
-          } else {
-            // Header and Footer reveal immediately
-            target.classList.add('reveal');
-          }
-          
-          observer.unobserve(target);
-        }
-      });
-    }, { 
-      threshold: 0.15,
-      rootMargin: '0px 0px -10px 0px'
-    });
-
-    if (header) observer.observe(header);
-    if (footer) observer.observe(footer);
-    cards.forEach(card => observer.observe(card));
+  function init() {
+    setupScrollReveal(
+      [
+        { selector: '.contact-header' },
+        { selector: '.contact-footer' },
+        { selector: '.contact-card', stagger: 100 },
+      ],
+      { threshold: 0.15, rootMargin: '0px 0px -10px 0px' }
+    );
   }
-  
-  // Runs on initial load
-  window.addEventListener('load', revealContact);
-  
-  // Support for Astro View Transitions
-  document.addEventListener('astro:after-swap', revealContact);
+
+  window.addEventListener('load', init);
+  document.addEventListener('astro:after-swap', init);
 </script>

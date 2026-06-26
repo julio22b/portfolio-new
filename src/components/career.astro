@@ -67,20 +67,6 @@ import CareerCard from './career-card.astro';
 </section>
 
 <style>
-  /* Reveal whole section when website loads */
-  .reveal-content {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: revealIn 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-  }
-
-  @keyframes revealIn {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
   /* Initial state of the card */
   .scroll-stat {
     opacity: 0;
@@ -96,32 +82,15 @@ import CareerCard from './career-card.astro';
 </style>
 
 <script>
-  function revealCards() {
-    const cards = document.querySelectorAll('.scroll-stat');
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          // Add a slight delay based on the card's position to create a wave effect
-          const index = Array.from(cards).indexOf(entry.target);
-          setTimeout(() => {
-            entry.target.classList.add('reveal');
-          }, (index % 2) * 150); // Delay optimized for the 2-column desktop layout
-          
-          observer.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0.15, // Trigger when 15% of the card is visible
-      rootMargin: '0px 0px -10px 0px' // Trigger slightly before it hits the viewport
-    });
+  import { setupScrollReveal } from '../utils/reveal';
 
-    cards.forEach(card => observer.observe(card));
+  function init() {
+    setupScrollReveal(
+      [{ selector: '.scroll-stat', stagger: 150, columns: 2 }],
+      { threshold: 0.15, rootMargin: '0px 0px -10px 0px' }
+    );
   }
 
-  // Runs on initial load
-  revealCards();
-  
-  // Necessary for Astro View Transitions if you use them
-  document.addEventListener('astro:after-swap', revealCards);
+  init();
+  document.addEventListener('astro:after-swap', init);
 </script>

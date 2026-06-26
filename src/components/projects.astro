@@ -31,63 +31,25 @@ import projectsData from '../data/projects.json';
     transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  /* Cards Initial State */
-  .project-card {
-    opacity: 0; /* Ensuring cards start hidden too */
-    transform: translateY(20px) scale(0.95);
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  /* Shared Revealed State */
-  .project-header.reveal,
-  .project-card.reveal {
+  .project-header.reveal {
     opacity: 1 !important;
     transform: translateY(0) scale(1);
   }
 </style>
 
 <script>
-  const initProjectReveal = () => {
-    const header = document.querySelector('.project-header');
-    const cards = document.querySelectorAll('.project-card');
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const target = entry.target as HTMLElement;
-          
-          // Check if the intersecting element is the header
-          if (target.classList.contains('project-header')) {
-            target.classList.add('reveal');
-            observer.unobserve(target);
-          } 
-          // Check if the intersecting element is a project card
-          else if (target.classList.contains('project-card')) {
-            const index = Array.from(cards).indexOf(target);
-            
-            // Stagger effect based on row position (only for cards)
-            setTimeout(() => {
-              target.classList.add('reveal');
-            }, (index % 3) * 150);
-            
-            observer.unobserve(target);
-          }
-        }
-      });
-    }, { 
-      threshold: 0.15, 
-      rootMargin: '0px 0px -10px 0px' 
-    });
+  import { setupScrollReveal } from '../utils/reveal';
 
-    // Observe the header
-    if (header) observer.observe(header);
-    
-    // Observe all cards
-    cards.forEach(card => observer.observe(card));
-  };
+  function init() {
+    setupScrollReveal(
+      [
+        { selector: '.project-header' },
+        { selector: '.project-card', stagger: 150, columns: 3 },
+      ],
+      { threshold: 0.15, rootMargin: '0px 0px -10px 0px' }
+    );
+  }
 
-  initProjectReveal();
-
-  // Support for Astro View Transitions
-  document.addEventListener('astro:after-swap', initProjectReveal);
+  init();
+  document.addEventListener('astro:after-swap', init);
 </script>
