@@ -59,14 +59,14 @@ const navItems: NavItem[] = [
             <li class="flex-1 md:flex-none">
               <a
                 href={item.href}
-                class="flex flex-col items-center gap-1 text-accent transition-colors text-xs md:text-base relative group"
+                class="flex flex-col items-center gap-1 text-subtext transition-colors text-xs md:text-base relative group"
                 aria-label={`Go to ${item.label} section`}
               >
                 <div class="absolute -left-4 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-accent rounded-full transition-all duration-300 scale-0 opacity-0 nav-indicator hidden md:block" />
                 <span class="md:hidden flex items-center justify-center w-6 h-6">
                   <Icon 
                     name={item.icon} 
-                    class="nav-icon w-full h-full text-accent/50 group-hover:text-accent transition-colors duration-300" 
+                    class="nav-icon w-full h-full text-subtext group-hover:text-accent transition-colors duration-300" 
                   />
                 </span>
                 <span class="hidden md:inline-block">{item.label}</span>

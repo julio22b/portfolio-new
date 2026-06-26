@@ -1,6 +1,4 @@
 export const SITE_CONFIG = {
-    // ----- THEME VARIABLE -----
-    // FEEL FREE TO CHANGE THIS TO ONE OF THE OPTIONS
-    // Options: 'default', 'strategic', 'innovator', 'executive'
-  baseTheme: 'default',
+    // Dark is default; the light/dark toggle handles the rest.
+    baseTheme: 'default',
 };
