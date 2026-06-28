@@ -21,12 +21,10 @@ const isSlider = project.images.length > 1;
 ---
 
 <div class="project-card group relative flex flex-col bg-accent/5 border border-accent/10 rounded-2xl overflow-hidden hover:border-accent/40 hover:shadow-xl hover:shadow-accent/10 transition-all duration-500">
-  <div class="aspect-video overflow-hidden relative bg-background/50">
-    <div class="absolute inset-0 bg-accent/10 group-hover:bg-transparent transition-colors z-10 pointer-events-none"></div>
-    
+  <a href={project.link} target="_blank" rel="noopener noreferrer" aria-label={`View ${project.title}`} class="aspect-video overflow-hidden relative bg-background/50 block">
     <div class={`w-full h-full relative ${isSlider ? 'image-slider' : ''}`}>
       {project.images.map((img: string, index: number) => (
-        <img 
+        <img
           src={img}
           alt={`${project.title} screenshot ${index + 1}`}
           onerror="this.onerror=null;this.src='/placeholder.jpeg';"
@@ -34,15 +32,15 @@ const isSlider = project.images.length > 1;
         />
       ))}
     </div>
-    
+
     <div class="absolute top-3 right-3 flex gap-2 z-20">
       {project.platforms.map((p: string) => (
-        <div class="p-1.5 bg-background backdrop-blur-md rounded-lg border border-accent/10 text-maintext">
+        <div class="p-1.5 bg-background/60 backdrop-blur-md rounded-lg border border-accent/20 text-maintext">
           <Icon name={`mdi:${p}`} class="w-4 h-4" />
         </div>
       ))}
     </div>
-  </div>
+  </a>
 
   <div class="p-6 space-y-4 flex flex-col flex-grow">
     <div class="flex justify-between items-start">
