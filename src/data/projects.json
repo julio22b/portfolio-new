@@ -1,5 +1,14 @@
 [
     {
+        "title": "MiloScribe",
+        "description": "A mobile-first web app that records doctor–patient consultations and generates structured medical documents using Google Gemini. Shaped by direct feedback from a practicing surgeon. Drawing on my background as a medical laboratory technologist, I designed the data model, the clinical document structures, and the AI safety boundaries that separate legitimate documentation from fabricated clinical content.",
+        "images": ["miloscribe-01.png"],
+        "tech": ["React", "TypeScript", "Redux", "Express", "Node.js", "Prisma", "PostgreSQL", "Web Audio API"],
+        "platforms": ["web"],
+        "link": "https://health-app-frontend-z0a9.onrender.com/login",
+        "category": "Full Stack App"
+    },
+    {
         "title": "WMS Outgoing Orders Dashboard",
         "description": "A real-time warehouse management dashboard for tracking and managing outgoing orders. Features live updates across connected clients via Socket.io, full CRUD, and a status timeline showing each order's progression from picking to dispatch.",
         "images": ["wms-01.png"],
