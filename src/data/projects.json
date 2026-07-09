@@ -1,12 +1,55 @@
 [
     {
         "title": "MiloScribe",
-        "description": "A mobile-first web app that records doctor–patient consultations and generates structured medical documents using Google Gemini. Shaped by direct feedback from a practicing surgeon. Drawing on my background as a medical laboratory technologist, I designed the data model, the clinical document structures, and the AI safety boundaries that separate legitimate documentation from fabricated clinical content.",
+        "description": "A mobile-first web app that records doctor consultations and generates structured medical documents using Google Gemini. Inspired by my background as a medical laboratory technologist and shaped by direct feedback from a practicing surgeon.",
         "images": ["miloscribe-01.png"],
         "tech": ["React", "TypeScript", "Redux", "Express", "Node.js", "Prisma", "PostgreSQL", "Web Audio API"],
         "platforms": ["web"],
         "link": "https://health-app-frontend-z0a9.onrender.com/login",
-        "category": "Full Stack App"
+        "category": "Full Stack App",
+        "details": {
+            "video": "",
+            "longDescription": [
+                { "type": "heading", "text": "The problem" },
+                {
+                    "type": "paragraph",
+                    "text": "Physicians spend a large portion of their day on documentation rather than patient care. A general surgery resident I know described the daily grind of hand-writing the same structured notes after every consultation. I wanted to build something that let him speak naturally and get back a properly formatted clinical document that followed the conventions his hospital actually uses."
+                },
+                { "type": "heading", "text": "How it was built" },
+                {
+                    "type": "paragraph",
+                    "text": "Coming from clinical laboratory science, I could make correct domain decisions instead of guessing at them. The data model reflects how patients, consultations, and clinical documents actually relate, and the generated documents follow real hospital conventions. The medical history, for instance, encodes a fixed set of physical-exam systems with canonical normal descriptions that fill in only when a system isn't mentioned, and abnormal findings that override the default. Those conventions came directly from the surgeon."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "The most important design decision was drawing a hard line in the AI prompts between safe documentation inference (filling in standard normal exam findings) and unsafe clinical fabrication."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "On the engineering side: browser audio capture with real-time waveform visualization (Web Audio API on canvas), a two-step upload-then-process flow for resilience on slow connections, and a single multimodal Gemini call that returns transcript and structured document together to halve API usage against a rate-limited tier. Full-stack TypeScript throughout — React, Node/Express, Prisma/PostgreSQL, JWT auth with strict per-doctor data scoping, Cloudinary for audio, deployed on Render and Supabase."
+                },
+                { "type": "heading", "text": "The name" },
+                { "type": "paragraph", "text": "It's named after Milo, my dog." }
+            ],
+            "screenshots": ["miloscribe-02.png", "miloscribe-03.png", "miloscribe-04.jpg"],
+            "links": [
+                {
+                    "label": "Frontend Repo",
+                    "url": "https://github.com/julio22b/health-app-frontend",
+                    "icon": "mdi:github"
+                },
+                {
+                    "label": "Backend Repo",
+                    "url": "https://github.com/julio22b/health-app-backend",
+                    "icon": "mdi:github"
+                },
+                {
+                    "label": "Live Demo",
+                    "url": "https://health-app-frontend-z0a9.onrender.com/login",
+                    "icon": "mdi:open-in-new"
+                }
+            ]
+        }
     },
     {
         "title": "WMS Outgoing Orders Dashboard",

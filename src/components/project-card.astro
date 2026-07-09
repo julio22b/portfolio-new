@@ -1,6 +1,24 @@
 ---
 import { Icon } from 'astro-icon/components';
 
+interface ProjectLink {
+  label: string;
+  url: string;
+  icon?: string;
+}
+
+type ContentBlock =
+  | { type: 'heading'; text: string }
+  | { type: 'paragraph'; text: string }
+  | { type: 'list'; items: string[] };
+
+interface ProjectDetails {
+  video?: string;
+  longDescription?: ContentBlock[];
+  screenshots?: string[];
+  links?: ProjectLink[];
+}
+
 interface Project {
   title: string;
   category: string;
@@ -9,6 +27,7 @@ interface Project {
   images: string[];
   tech: string[];
   platforms: string[];
+  details?: ProjectDetails;
 }
 
 interface Props {
@@ -18,6 +37,36 @@ interface Props {
 const { project } = Astro.props as Props;
 
 const isSlider = project.images.length > 1;
+const slug = project.title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+const modalId = `project-modal-${slug}`;
+
+function getEmbedUrl(url: string): string {
+  try {
+    const u = new URL(url);
+    if (u.hostname.includes('youtu.be')) {
+      return `https://www.youtube.com/embed/${u.pathname.slice(1)}`;
+    }
+    if (u.hostname.includes('youtube.com')) {
+      if (u.pathname === '/watch') {
+        return `https://www.youtube.com/embed/${u.searchParams.get('v')}`;
+      }
+      if (u.pathname.startsWith('/shorts/')) {
+        return `https://www.youtube.com/embed/${u.pathname.split('/')[2]}`;
+      }
+      return url;
+    }
+    if (u.hostname.includes('vimeo.com') && !u.hostname.includes('player.')) {
+      const id = u.pathname.split('/').filter(Boolean)[0];
+      return `https://player.vimeo.com/video/${id}`;
+    }
+    return url;
+  } catch {
+    return url;
+  }
+}
+
+const embedUrl = project.details?.video ? getEmbedUrl(project.details.video) : null;
+const links = project.details?.links ?? [];
 ---
 
 <div class="project-card group relative flex flex-col bg-accent/5 border border-accent/10 rounded-2xl overflow-hidden hover:border-accent/40 hover:shadow-xl hover:shadow-accent/10 transition-all duration-500">
@@ -66,8 +115,104 @@ const isSlider = project.images.length > 1;
         </li>
       ))}
     </ul>
+
+    {project.details && (
+      <button
+        type="button"
+        data-open-modal={modalId}
+        class="flex items-center justify-center gap-1.5 text-xs font-semibold text-accent/80 hover:text-accent border-t border-accent/10 pt-3 transition-colors"
+      >
+        View more
+        <Icon name="mdi:arrow-expand" class="w-3.5 h-3.5" />
+      </button>
+    )}
   </div>
 </div>
+
+{project.details && (
+  <dialog id={modalId} class="project-modal">
+    <div class="relative w-[90vw] max-w-2xl max-h-[85vh] flex flex-col bg-background border border-accent/20 rounded-2xl overflow-hidden">
+      <button
+        type="button"
+        data-close-modal
+        aria-label={`Close ${project.title} details`}
+        class="absolute top-4 right-4 z-10 p-1.5 bg-background/80 backdrop-blur-md rounded-lg border border-accent/20 text-maintext hover:text-accent transition-colors"
+      >
+        <Icon name="mdi:close" class="w-5 h-5" />
+      </button>
+
+      <div class="overflow-y-auto p-6 md:p-8 space-y-5">
+        <div>
+          <span class="text-accent text-[10px] uppercase tracking-widest font-bold">{project.category}</span>
+          <h3 class="text-2xl font-heading font-bold text-maintext mt-1">{project.title}</h3>
+        </div>
+
+        {embedUrl && (
+          <div class="aspect-video w-full rounded-xl overflow-hidden bg-black/40 border border-accent/10">
+            <iframe
+              data-src={embedUrl}
+              title={`${project.title} demo video`}
+              class="w-full h-full"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              loading="lazy"
+            ></iframe>
+          </div>
+        )}
+
+        {!!project.details.screenshots?.length && (
+          <div class="grid grid-cols-3 gap-3">
+            {project.details.screenshots.map((img: string, i: number) => (
+              <img
+                src={img}
+                alt={`${project.title} extra screenshot ${i + 1}`}
+                onerror="this.onerror=null;this.src='/placeholder.jpeg';"
+                class="w-full aspect-video h-80 object-cover rounded-lg border border-accent/10"
+              />
+            ))}
+          </div>
+        )}
+
+        {!!project.details.longDescription?.length && (
+          <div class="space-y-3 text-subtext text-sm font-body leading-relaxed">
+            {project.details.longDescription.map((block: ContentBlock) => {
+              if (block.type === 'heading') {
+                return <p class="font-bold text-maintext">{block.text}</p>;
+              }
+              if (block.type === 'list') {
+                return (
+                  <ul class="list-disc pl-5 space-y-1.5">
+                    {block.items.map((item: string) => (
+                      <li>{item}</li>
+                    ))}
+                  </ul>
+                );
+              }
+              return <p>{block.text}</p>;
+            })}
+          </div>
+        )}
+
+      </div>
+
+      {!!links?.length && (
+        <div class="shrink-0 flex flex-wrap gap-3 p-6 md:p-8 pt-4 border-t border-accent/10 bg-background">
+          {links.map((link: ProjectLink) => (
+            <a
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg bg-accent/5 border border-accent/10 text-accent/80 hover:text-accent hover:border-accent/40 transition-colors"
+            >
+              <Icon name={link.icon ?? 'mdi:open-in-new'} class="w-4 h-4" />
+              {link.label}
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  </dialog>
+)}
 
 <script>
   function initSliders() {
@@ -95,6 +240,57 @@ const isSlider = project.images.length > 1;
 
   initSliders();
   document.addEventListener('astro:after-swap', initSliders);
+
+  function isClickOutside(dialog: HTMLDialogElement, e: MouseEvent) {
+    const rect = dialog.getBoundingClientRect();
+    return (
+      e.clientX < rect.left ||
+      e.clientX > rect.right ||
+      e.clientY < rect.top ||
+      e.clientY > rect.bottom
+    );
+  }
+
+  function initModals() {
+    document.querySelectorAll<HTMLButtonElement>('[data-open-modal]').forEach((btn) => {
+      if (btn.dataset.modalBound) return;
+      btn.dataset.modalBound = 'true';
+
+      btn.addEventListener('click', () => {
+        const targetId = btn.dataset.openModal;
+        const dialog = targetId && document.getElementById(targetId);
+        if (!(dialog instanceof HTMLDialogElement)) return;
+
+        const iframe = dialog.querySelector<HTMLIFrameElement>('iframe[data-src]');
+        if (iframe && !iframe.src) iframe.src = iframe.dataset.src ?? '';
+
+        dialog.showModal();
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    document.querySelectorAll<HTMLDialogElement>('.project-modal').forEach((dialog) => {
+      if (dialog.dataset.modalBound) return;
+      dialog.dataset.modalBound = 'true';
+
+      dialog.querySelectorAll<HTMLButtonElement>('[data-close-modal]').forEach((btn) =>
+        btn.addEventListener('click', () => dialog.close())
+      );
+
+      dialog.addEventListener('click', (e) => {
+        if (isClickOutside(dialog, e)) dialog.close();
+      });
+
+      dialog.addEventListener('close', () => {
+        const iframe = dialog.querySelector<HTMLIFrameElement>('iframe[data-src]');
+        if (iframe) iframe.src = '';
+        document.body.style.overflow = '';
+      });
+    });
+  }
+
+  initModals();
+  document.addEventListener('astro:after-swap', initModals);
 </script>
 
 <style is:global>
@@ -102,8 +298,8 @@ const isSlider = project.images.length > 1;
     opacity: 0;
     visibility: hidden;
     transform: translateY(40px);
-    transition: 
-      opacity 0.8s ease-out, 
+    transition:
+      opacity 0.8s ease-out,
       transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
       visibility 0.8s;
     will-change: transform, opacity;
@@ -113,5 +309,33 @@ const isSlider = project.images.length > 1;
     opacity: 1 !important;
     visibility: visible !important;
     transform: translateY(0) !important;
+  }
+
+  dialog.project-modal {
+    margin: auto;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: inherit;
+  }
+
+  dialog.project-modal::backdrop {
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+  }
+
+  dialog.project-modal[open] {
+    animation: modal-in 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes modal-in {
+    from {
+      opacity: 0;
+      transform: translateY(16px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
   }
 </style>
