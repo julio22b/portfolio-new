@@ -8,7 +8,7 @@
         "link": "https://health-app-frontend-z0a9.onrender.com/login",
         "category": "Full Stack App",
         "details": {
-            "video": "",
+            "video": "Miloscribe.mp4",
             "longDescription": [
                 { "type": "heading", "text": "The problem" },
                 {
@@ -35,12 +35,12 @@
             "links": [
                 {
                     "label": "Frontend Repo",
-                    "url": "https://github.com/julio22b/health-app-frontend",
+                    "url": "https://github.com/julio22b/miloscribe-frontend",
                     "icon": "mdi:github"
                 },
                 {
                     "label": "Backend Repo",
-                    "url": "https://github.com/julio22b/health-app-backend",
+                    "url": "https://github.com/julio22b/miloscribe-backend",
                     "icon": "mdi:github"
                 },
                 {

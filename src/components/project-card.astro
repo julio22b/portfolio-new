@@ -65,7 +65,8 @@ function getEmbedUrl(url: string): string {
   }
 }
 
-const embedUrl = project.details?.video ? getEmbedUrl(project.details.video) : null;
+const localVideoSrc = project.details?.video ? `/${project.details.video}` : null;
+const videoPoster = project.images[0] ? `/${project.images[0]}` : undefined;
 const links = project.details?.links ?? [];
 ---
 
@@ -147,16 +148,17 @@ const links = project.details?.links ?? [];
           <h3 class="text-2xl font-heading font-bold text-maintext mt-1">{project.title}</h3>
         </div>
 
-        {embedUrl && (
-          <div class="aspect-video w-full rounded-xl overflow-hidden bg-black/40 border border-accent/10">
-            <iframe
-              data-src={embedUrl}
-              title={`${project.title} demo video`}
-              class="w-full h-full"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-              loading="lazy"
-            ></iframe>
+        {localVideoSrc && (
+          <div class="video-wrapper w-full rounded-xl overflow-hidden border border-accent/10 bg-black/60 flex justify-center">
+            <video
+              controls
+              preload="metadata"
+              poster={videoPoster}
+              class="block max-h-90 w-auto max-w-full object-contain"
+            >
+              <source src={localVideoSrc} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
           </div>
         )}
 
@@ -284,6 +286,8 @@ const links = project.details?.links ?? [];
       dialog.addEventListener('close', () => {
         const iframe = dialog.querySelector<HTMLIFrameElement>('iframe[data-src]');
         if (iframe) iframe.src = '';
+        const video = dialog.querySelector<HTMLVideoElement>('video');
+        if (video) video.pause();
         document.body.style.overflow = '';
       });
     });
