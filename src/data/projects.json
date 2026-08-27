@@ -52,6 +52,78 @@
         }
     },
     {
+        "title": "MiloDetects",
+        "description": "An assistive blood smear analysis web app that detects and localizes blood cells from a microscope photo using a self-hosted YOLOv8 model. Built from my years as a clinical bioanalyst.",
+        "images": ["milodetects-01.png"],
+        "tech": [
+            "React",
+            "TypeScript",
+            "Redux Toolkit",
+            "Python",
+            "FastAPI",
+            "YOLOv8",
+            "PyTorch",
+            "PostgreSQL",
+            "Supabase"
+        ],
+        "platforms": ["web"],
+        "link": "https://milodetects-frontend.vercel.app/",
+        "category": "Full Stack + Computer Vision",
+        "details": {
+            "video": "milodetects-demo.webm",
+            "longDescription": [
+                { "type": "heading", "text": "The problem" },
+                {
+                    "type": "paragraph",
+                    "text": "Reading a blood smear means sitting at a microscope and counting cells by eye, field after field. MiloDetects lets you photograph a microscope field, then detects and localizes the cells in it (white cells, red cells, platelets), draws labeled boxes over your own image, and reports per-field counts. It is deliberately assistive: it tells you where the cells are and what type they are. It does not perform a differential (for now)."
+                },
+                { "type": "heading", "text": "How it was built" },
+                {
+                    "type": "paragraph",
+                    "text": "The backend has one function for inference: predict(image_bytes) returns a list of detections. It uses either a mock engine that makes up plausible results or the real one that runs YOLO. An environment variable picks which loads. I wrote the mock first and built the whole app on top of it: capture, batching, the box overlay, history. The model didn't exist yet. When the weights were ready I flipped the variable and nothing else changed."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Detections use normalized center-xywh so the model, the database, the API schema, and the canvas overlay all speak one language, avoiding bugs where boxes render fifteen pixels off. The model itself is a YOLOv8n fine-tuned on BCCD, a public dataset of 255 training images, transfer-learned from COCO weights: 0.919 mAP50 overall, 0.983 on white cells. It runs in-process behind FastAPI, offloaded to a thread pool so it doesn't block the event loop, with torch imported lazily to keep cold starts cheap."
+                },
+                { "type": "heading", "text": "What happened in the field" },
+                {
+                    "type": "paragraph",
+                    "text": "By every number I had, it worked. Then a bioanalyst friend held his phone to a microscope eyepiece in an actual lab and ran a real slide through it. It returned zero detections, on a field with cells plainly visible. Two reasons: 1) BCCD is built from 100× oil immersion images and he was working at 40×, so the model had never seen a cell at that scale. 2) BCCD images are clean and evenly lit, while a phone against an eyepiece produces glare, vignetting, a color cast from the lamp, and a hard dark circle where the field ends."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "The differential is routinely read at 40×. Oil immersion is for particular cell morphology and inclusions. So a well-constructed, widely-used public dataset is built at a magnification most real users aren't working at, which resulted in the model being trained for a different problem."
+                },
+                { "type": "heading", "text": "What's next" },
+                {
+                    "type": "paragraph",
+                    "text": "v1 is deployed and does what it claims on images resembling what it was trained on, knowing the current limitations. v2 is being built around what the field test taught: a 40× dataset shot in real conditions with a written capture protocol and a clinical collaborator, since no public dataset for this exists and I'm qualified to annotate it correctly. After that, WBC differentiation, a real differential needs five subtypes, so the detector finds where the cells are and a second-stage classifier decides which kind. A differential is an actual diagnostic output."
+                },
+                { "type": "heading", "text": "The name" },
+                { "type": "paragraph", "text": "Also named after Milo, my dog." }
+            ],
+            "screenshots": [],
+            "links": [
+                {
+                    "label": "Frontend Repo",
+                    "url": "https://github.com/julio22b/milodetects-frontend",
+                    "icon": "mdi:github"
+                },
+                {
+                    "label": "Backend Repo",
+                    "url": "https://github.com/julio22b/milodetects-backend",
+                    "icon": "mdi:github"
+                },
+                {
+                    "label": "Live Demo",
+                    "url": "https://milodetects-frontend.vercel.app/",
+                    "icon": "mdi:open-in-new"
+                }
+            ]
+        }
+    },
+    {
         "title": "WMS Outgoing Orders Dashboard",
         "description": "A real-time warehouse management dashboard for tracking and managing outgoing orders. Features live updates across connected clients via Socket.io, full CRUD, and a status timeline showing each order's progression from picking to dispatch.",
         "images": ["wms-01.png"],
