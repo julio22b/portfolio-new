@@ -124,21 +124,21 @@
         }
     },
     {
-        "title": "WMS Outgoing Orders Dashboard",
-        "description": "A real-time warehouse management dashboard for tracking and managing outgoing orders. Features live updates across connected clients via Socket.io, full CRUD, and a status timeline showing each order's progression from picking to dispatch.",
-        "images": ["wms-01.png"],
-        "tech": ["React", "TypeScript", "Redux", "Node.js", "PostgreSQL", "Socket.io", "Docker"],
-        "platforms": ["web"],
-        "link": "https://outgoing-orders-frontend.onrender.com",
-        "category": "Full Stack App"
-    },
-    {
         "title": "Letterboxd",
         "description": "A full-stack film reviewing app powered by TMDB and OMDB APIs. Users can review and rate films, build watchlists, like movies, and keep a personal diary of watched films. Features JWT authentication and a MongoDB backend.",
         "images": ["letterboxd-01.png"],
         "tech": ["React", "TypeScript", "Redux", "Node.js", "MongoDB", "Jest"],
         "platforms": ["web"],
         "link": "https://movie-app-frontend-05mf.onrender.com/",
+        "category": "Full Stack App"
+    },
+    {
+        "title": "WMS Outgoing Orders Dashboard",
+        "description": "A real-time warehouse management dashboard for tracking and managing outgoing orders. Features live updates across connected clients via Socket.io, full CRUD, and a status timeline showing each order's progression from picking to dispatch.",
+        "images": ["wms-01.png"],
+        "tech": ["React", "TypeScript", "Redux", "Node.js", "PostgreSQL", "Socket.io", "Docker"],
+        "platforms": ["web"],
+        "link": "https://outgoing-orders-frontend.onrender.com",
         "category": "Full Stack App"
     }
 ]
