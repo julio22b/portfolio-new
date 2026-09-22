@@ -134,8 +134,8 @@
     },
     {
         "title": "WMS Outgoing Orders Dashboard",
-        "description": "A real-time warehouse management dashboard for tracking and managing outgoing orders. Features live updates across connected clients via Socket.io, full CRUD, and a status timeline showing each order's progression from picking to dispatch.",
-        "images": ["wms-01.png"],
+        "description": "A real-time warehouse management dashboard for tracking and managing outgoing orders. Features live updates across connected clients via Socket.io, full CRUD with optimistic-concurrency conflict handling, and barcode scanning to open an order straight from its shipping label.",
+        "images": ["wms-01.png", "wms-02.png", "wms-03.png"],
         "tech": ["React", "TypeScript", "Redux", "Node.js", "PostgreSQL", "Socket.io", "Docker"],
         "platforms": ["web"],
         "link": "https://outgoing-orders-frontend.onrender.com",
