@@ -6,10 +6,8 @@ import Tech from "../components/tech.astro";
 import Projects from "../components/projects.astro";
 import Contact from "../components/contact.astro";
 import Career from "../components/career.astro";
-import { getData } from '../lib/getData';
-import localHomeData from '../data/home.json';
+import homeData from '../data/home.json';
 
-const homeData = await getData('home', localHomeData);
 const { webpageTitle } = homeData;
 ---
 

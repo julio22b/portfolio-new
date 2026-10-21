@@ -1,9 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
-import { getData } from '../lib/getData';
-import localTechData from '../data/tech.json';
+import techData from '../data/tech.json';
 
-const techData = await getData('tech', localTechData);
 const { categories } = techData;
 ---
 

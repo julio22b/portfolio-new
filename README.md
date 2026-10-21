@@ -10,7 +10,7 @@ A high-performance, responsive portfolio built with **Astro**, **Tailwind CSS**,
 - **Frontend:** [Astro](https://astro.build/) (Static Site Generation)
 - **Styling:** [Tailwind CSS](https://tailwindcss.com/)
 - **Icons:** [Iconify](https://iconify.design/) via `astro-icon`
-- **Deployment:** [Netlify](https://www.netlify.com)
+- **Deployment:** [GitHub Pages](https://pages.github.com/) via GitHub Actions on push to `master`
 
 ## 🚀 Getting Started
 Follow these instructions to get a local copy up and running.
